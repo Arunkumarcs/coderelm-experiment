@@ -16,6 +16,7 @@ let defaultTracker = async function(name, obj, pro, oldVal, newVal) {
 class Watcher {
     constructor() {
         this.instances = {}
+        this.tracker = {}
     }
 
     /**
@@ -35,9 +36,8 @@ class Watcher {
         data
     ) {
         let self = this
-        this.instances[identifier] = {
-            ...self.instances[identifier],
-            ...data
+        for (const key in data) {
+            this.instances[identifier][key] = data[key]
         }
     }
 
@@ -58,15 +58,10 @@ class Watcher {
     register(
         obj,
         identifier,
-        tracker = function(name, obj, pro, oldVal, newVal) {
-            console.log(`the property "${pro}" in  ${name}" is being changed to new value.`)
-        }
+        tracker = defaultTracker
     ) {
-        console.log(tracker)
-        obj._tracker = tracker
-
+        this.tracker[identifier] = tracker 
         this.instances[identifier] = new Proxy(obj, this._createProxy(identifier))
-        return this.instances[identifier]
     }
 
     /**
@@ -76,6 +71,7 @@ class Watcher {
     deRegister(identifier) {
         if(this.instances[identifier] !== undefined) {
             delete this.instances[identifier]
+            delete this.tracker[identifier]
         }        
         return this.instances
     }
@@ -87,11 +83,9 @@ class Watcher {
      */
     updateTracker(
         identifier,
-        tracker = function(name, obj, pro, oldVal, newVal) {
-            console.log(`the property "${pro}" in  ${name}" is being changed to new value.`)
-        }
+        tracker = defaultTracker
     ) {
-        this.instances[identifier]._tracker = tracker
+        this.tracker[identifier] = tracker
     }
 
     /**
@@ -106,8 +100,7 @@ class Watcher {
                 let oldVal = obj[prop]
                 obj[prop] = newVal
                 
-                console.log(await self.instances[identifier]._tracker)
-                await self.instances[identifier]._tracker(
+                await self.tracker[identifier](
                     identifier,
                     obj,
                     prop,
@@ -118,7 +111,7 @@ class Watcher {
             },
             // Getter
             async get(obj, prop) {
-                return obj[prop]
+                return await obj[prop]
             }
         }
     }

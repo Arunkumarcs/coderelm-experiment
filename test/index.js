@@ -9,11 +9,18 @@ wObj.register({
 }, 'o1')
 
 console.log(wObj.getAll())
-// wObj.update('o1', {
-//     sda: 45435
-// })
+wObj.update('o1', {
+    sda: {
+        asd: 453245
+    }
+})
 
-// console.log(wObj.getAll())
+console.log(wObj.getAll())
 
-wObj.instances.o1.dfsdg = 3423
-console.log(wObj2.getAll())
+wObj.update('o1', {
+    sda: {
+        asd: 346435654
+    }
+})
+// wObj.instances.o1.dfsdg = 3423
+// console.log(wObj2.getAll())
