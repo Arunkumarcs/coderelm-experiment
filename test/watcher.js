@@ -56,8 +56,8 @@ class Watcher {
      * @param {*} tracker 
      */
     register(
-        obj,
         identifier,
+        obj = {},
         tracker = defaultTracker
     ) {
         this.tracker[identifier] = tracker 
