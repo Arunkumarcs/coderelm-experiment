@@ -1,0 +1,20 @@
+{
+    "PORT": 3000,
+    // Customer module configs
+    "Customer": {
+        "credit": {
+            "initialLimit": 100,
+            // Set low for development
+            "initialDays": 1
+        }
+    },
+    "Debug": false,
+    "Session": { 
+        "secret": "productionSessionKey", 
+        "resave": false, 
+        "saveUninitialized": true 
+    },
+    "SessionStorage": {
+        "secret": "45tyhgbfdgu"
+    }
+}
