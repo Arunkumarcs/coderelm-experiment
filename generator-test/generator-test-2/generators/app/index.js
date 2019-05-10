@@ -2,7 +2,7 @@
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-
+const _ = require('lodash')
 module.exports = class extends Generator {
   /**
    * 1. initializing
@@ -59,16 +59,33 @@ module.exports = class extends Generator {
    */
   writing() {
     console.log('5. writing')
+    let projectName = "Templating with Yeoman"
+    
     // console.log(this.appname)
     // console.log(this.config)
     // console.log(this.props)
     // console.log(this.contextRoot)
+    // console.log(this.sourceRoot()+'/default')
 
+    /**
+     * Copying default files and folders.
+     */
     this.fs.copy(
-      // this.templatePath('dummyfile.txt'),
-      // this.destinationPath('dummyfile.txt')
-      this.sourceRoot(),
+      this.sourceRoot()+'/default',
       this.destinationRoot()
+    );
+
+    // package.json
+    this.fs.copyTpl(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json'),
+      { projectName: _.kebabCase(projectName) }
+    );
+    // ecosystem.config.js
+    this.fs.copyTpl(
+      this.templatePath('ecosystem.config.js'),
+      this.destinationPath('ecosystem.config.js'),
+      { projectName: _.kebabCase(projectName) }
     );
   }
 
@@ -83,7 +100,6 @@ module.exports = class extends Generator {
    */
   install() {
     console.log('7. install')
-    // this.installDependencies();
     this.yarnInstall()
   }
 
