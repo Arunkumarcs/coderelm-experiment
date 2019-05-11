@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'templating-with-yeoman',
+    name: 'expCodeRelm',
     script: './bin/www',
 
     // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/

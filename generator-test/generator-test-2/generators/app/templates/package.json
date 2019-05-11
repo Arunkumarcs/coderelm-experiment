@@ -1,7 +1,11 @@
 {
   "name": "<%= projectName %>",
-  "version": "0.0.0",
-  "private": true,
+  "version": "<%= projectVersion %>",
+  "description": "<%= projectDescription %>",
+  "main": "./bin/www",
+  "repository": "<%= projectRepository %>",
+  "author": "<%= projectAuthor %>",
+  "license": "<%= projectLicense %>",
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./bin/www",
     "start-test": "cross-env NODE_ENV=test node ./bin/www",

@@ -1,0 +1,9 @@
+{
+  "name": "coderelm-experiment",
+  "version": "1.0.0",
+  "description": "sd",
+  "main": "index.js",
+  "repository": "https://github.com/Arunkumarcs/coderelm-experiment.git",
+  "author": "Arunkumar <arunkumarcoderelm@gmail.com>",
+  "license": "MIT"
+}

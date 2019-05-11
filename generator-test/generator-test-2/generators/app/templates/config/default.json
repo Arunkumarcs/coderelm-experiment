@@ -1,23 +1,21 @@
 {
-    "PORT": 3000,
-    // Customer module configs
-    "Customer": {
-        "credit": {
-            "initialLimit": 100,
-            // Set low for development
-            "initialDays": 1
-        }
+    // app
+    "app": {
+        "secret": "<%= appSecret %>"
     },
+
+    // Port
+    "PORT": 3000,
+    // Debug
     "Debug": true,
-    
     // https://expressjs.com/en/resources/middleware/session.html
     "Session": { 
-        "secret": "ersfbhesdzdbgnfgdgf", 
+        "secret": "<%= storageSecret %>", 
         "resave": false, 
         "saveUninitialized": true 
     },
     // https://www.npmjs.com/package/session-file-store
     "SessionStorage": {
-        "secret": "5475687bcv"
+        "secret": "<%= sessionStorageSecret %>"
     }
 }
