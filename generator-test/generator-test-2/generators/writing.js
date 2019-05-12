@@ -1,4 +1,5 @@
 const _ = require("lodash");
+const faker = require("faker");
 
 class Writeing {
 
@@ -39,14 +40,13 @@ class Writeing {
 
   // Config/config.js
   static config(generator) {  
-    let project = generator.props;
     generator.fs.copyTpl(
       generator.templatePath() + "/config/default.json",
       generator.destinationPath() + "/config/default.json",
       {
-        appSecret: "dsfsdfgdgdf",
-        storageSecret: "34675867uthgfdfefrerg",
-        sessionStorageSecret: "regnmj756y5t4reqw"
+        appSecret: faker.random.alphaNumeric(32),
+        storageSecret: faker.random.alphaNumeric(32),
+        sessionStorageSecret: faker.random.alphaNumeric(32)
       }
     );
   }
